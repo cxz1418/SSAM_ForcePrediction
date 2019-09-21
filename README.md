@@ -33,7 +33,7 @@ and directions of external forces.
 We also constructed a model for learning and generating a db composed of sequential images for interaction force estimation
 https://github.com/hyeon-jo/Interaction-force-estimation-based-on-deep-learning
 ### TF-Record
-In order to optimize the step of loading files in training and evaluation, we should convert the dataset (sequential video images) into TF-Records.
+In order to optimize the step of loading files in **training** and **evaluation**, we should convert the dataset (sequential video images) into TF-Records.
 https://www.tensorflow.org/tutorials/load_data/tf_records
 
 ## Train a Model
