@@ -24,7 +24,7 @@ and directions of external forces.
 
 ## Prerequisites
 * Python 3.x
-* TensorFlow 1.x
+* TensorFlow 1.1
 * tflearn
 
 
