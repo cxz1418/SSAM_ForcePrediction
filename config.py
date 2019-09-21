@@ -19,11 +19,11 @@ k-Fold DATASET Configuration
 
 
 DATA_FOLD_PATHS = (
-    "/mnt/hochul/SamsungProject/CrossData_v0312/0",
-    "/mnt/hochul/SamsungProject/CrossData_v0312/1",
-    "/mnt/hochul/SamsungProject/CrossData_v0312/2",
-    "/mnt/hochul/SamsungProject/CrossData_v0312/3",
-    "/mnt/hochul/SamsungProject/CrossData_v0312/4",
+    "/mnt/CrossData_v0312/0",
+    "/mnt/CrossData_v0312/1",
+    "/mnt/CrossData_v0312/2",
+    "/mnt/CrossData_v0312/3",
+    "/mnt/CrossData_v0312/4",
 )
 EVAL_FOLD_INDEX       = int(4)
 
@@ -38,8 +38,8 @@ EVAL_SAVE_FOLDER      = "./results"
 
 
 # load your own model
-MODEL_NETWORK     = cnn.RCNN_0718_BaseLine()
-MODEL_SAVE_FOLDER = "/data1/hochul/"
+MODEL_NETWORK     = cnn.RCNN_BaseLine()
+MODEL_SAVE_FOLDER = "/data/"
 MODEL_SAVE_NAME   = "TrainSave"
 MODEL_OPTIMIZER   = tf.train.AdamOptimizer
 MODEL_SAVE_INTERVAL = int(2235)

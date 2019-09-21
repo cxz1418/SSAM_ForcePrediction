@@ -27,8 +27,6 @@ if __name__ == '__main__':
         keep_order=True
     )
 
-
-
     # Load batches just one epoch
     batch_index = 0
     remain_batch = data_manager.size

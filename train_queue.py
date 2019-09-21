@@ -51,7 +51,6 @@ def average_gradients(grads):
         average_grads.append(grad_and_var)
     return average_grads
 
-
 def getCurrentTotalNum():
     totalNum =0
     for k in range(len(config.DATA_FOLD_NUM)):
@@ -61,9 +60,6 @@ def getCurrentTotalNum():
             totalNum+=config.DATA_FOLD_NUM[k]
 
     return totalNum
-
-
-
 
 
 class Trainer:
@@ -105,7 +101,7 @@ class Trainer:
 
             foldPaths = []
             for qw in range(10):
-                path = '/mnt/hochul/TrainSave_sam/TFRecord/train/trainset.tfrecords%d' % qw
+                path = '/TrainSave_sam/TFRecord/train/trainset.tfrecords%d' % qw
                 foldPaths.append(path)
             # Create a list of filenames and pass it to a queue
             filename_queue = tf.train.string_input_producer(
@@ -121,23 +117,9 @@ class Trainer:
 
 
             force = tf.cast(features['force'], tf.float32)
-            # force =  force.decode("utf-8")
-            print ('----------------')
-            print (force.get_shape())
-
             video = tf.decode_raw(features['video'], tf.uint8)
-
-            print( '----------------')
-            print (video.get_shape())
-
-            # Reshape image data into the original shape
             video = tf.reshape(video,
                                [config.IMAGE_FRAMES,config.IMAGE_WIDTH, config.IMAGE_HEIGHT, config.IMAGE_CHANNELS])
-
-            print ('----------------')
-            print (video.get_shape())
-            print (force.get_shape())
-
             video_batch,force_batch =tf.train.shuffle_batch([video, force], batch_size=config.BATCH_SIZE,
                                    capacity=config.BATCH_SIZE * 20, num_threads=4,
                                    min_after_dequeue=5)
@@ -180,25 +162,6 @@ class Trainer:
         tf.summary.scalar('global_loss', self.global_loss)
         tf.summary.scalar('global_mse', self.global_mse)
 
-        # # if (self.all_towers[0]['fwd_images'] != None):
-        # #     tf.summary.image('fwd_image', self.all_towers[0]['fwd_images'], 5)
-        #
-        # if (self.all_towers[0]['fwd_attention'] != None):
-        #     tf.summary.image('fwd_attention', self.all_towers[0]['fwd_attention'], 5)
-        #
-        # # if (self.all_towers[0]['mid_images'] != None):
-        # #     tf.summary.image('mid_image', self.all_towers[0]['mid_images'], 5)
-        #
-        # if (self.all_towers[0]['mid_attention'] != None):
-        #     tf.summary.image('mid_attention', self.all_towers[0]['mid_attention'], 5)
-        #
-        # if (self.all_towers[0]['bwd_images'] != None):
-        #     tf.summary.image('bwd_images', self.all_towers[0]['bwd_images'], 5)
-        #
-        # if (self.all_towers[0]['bwd_attention'] != None):
-        #     tf.summary.image('bwd_attention', self.all_towers[0]['bwd_attention'], 5)
-       
-
         return tf.summary.merge_all()
 
 
@@ -238,13 +201,7 @@ class Trainer:
 
 
     def run_train(self, model_save_path):
-        """
-        blar blar
-        """
         session = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
-
-
-
         train_start_time = time.time()
         with tf.device('/cpu:0'), session.as_default():
             """
@@ -276,12 +233,8 @@ class Trainer:
             weight_decay_level = 0
             init_lr= float(config.TRAIN_LEARNING_RATE)
 
-            ##
             coord = tf.train.Coordinator()
             threads = tf.train.start_queue_runners(coord=coord)
-            ##
-
-
 
             while session.run(self.global_step) < config.TRAIN_MAX_STEPS:
 
@@ -290,13 +243,7 @@ class Trainer:
 
                 step_index = int(session.run(self.global_step))
 
-
                 step_start_time = time.time()
-
-
-                # read input data from data manager
-
-
 
                 _, loss, mse, summary = session.run(
                     fetches=[
@@ -309,19 +256,15 @@ class Trainer:
                         self.learning_rate: lr
                     }
                 )
-
-                # print useful logs in your console
+                
                 timecost = time.time() - step_start_time
                 if(step_index%500==0):
                     print ('[Step %5d] LR: %.5E, LOSS: %.5E, MSE: %.5E, Time: %.7f sec' % ( step_index, lr, loss, mse, timecost))
 
-                # Save your summary information for tensor-board and model data
                 summary_writer.add_summary(summary, global_step=step_index)
-
                 if step_index % config.MODEL_SAVE_INTERVAL == 0:
                     saver.save(session, os.path.join(model_save_path, 'tr'), global_step=step_index)
-
-
+                    
                 loss_array.append(loss)
                 if (step_index % ( getCurrentTotalNum()/config.BATCH_SIZE) == 0 and step_index!=0):
                     epoch = int(step_index / (getCurrentTotalNum()/ config.BATCH_SIZE))
@@ -343,8 +286,6 @@ class Trainer:
                         exit(-1);
                     last_loss=cur_loss
 
-
-
                 # if it's test mode, stop training
                 if config.TEST_MODE :
                     print ('--- All Test Done Successfully ----')
@@ -363,10 +304,6 @@ class Trainer:
 MAIN SECTION
 """
 if __name__ == '__main__':
-
-
-
-
     """
     Init trainer and run training sessions
     """
