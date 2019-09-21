@@ -9,7 +9,7 @@ from nets import cnn, rnn
 """
 Default Configuration
 """
-NUM_GPUS = int(4)
+NUM_GPUS = int(8)
 TEST_MODE = False
 
 
