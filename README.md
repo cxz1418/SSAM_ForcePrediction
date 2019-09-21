@@ -45,14 +45,15 @@ Some critical arguments (Config.py):
 * *MODEL_OPTIMIZER*: train optimizer parameter.
 * *MODEL_NETWORK*: The CNN_architecture constucted in nets/cnn.py.
 
+## Pretrained-model 
+https://drive.google.com/file/d/1vqSJz6inKEqx4eOAJNiXBglMTVJZpYo9/view?usp=sharing
 
 ## Evaluate a Model
 Below script gives you an example of evaluating a model with CNN_LSTM after training.
 <pre><code>CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python eval.py</code></pre>
 
-## How to use
-VGG-like-model  based examples are included. 
 
 
 
-## Pretrained-model 
+
+
