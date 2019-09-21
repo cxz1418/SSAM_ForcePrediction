@@ -20,7 +20,7 @@ successfully infer interaction forces in various conditions
 featuring different target materials, changes in illumination,
 and directions of external forces.
 
-![Alt text](/Samples/fig_main.JPG)
+![Alt text](/samples/fig_main.JPG)
 
 ## Prerequisites
 * Python 3.x
