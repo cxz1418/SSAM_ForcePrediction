@@ -30,7 +30,7 @@ and directions of external forces.
 
 ## Prepare Data set
 ### Download DB
-We also constructed a model for learning and generating a db composed of sequential images for interaction force estimation
+To train and evaluate model, We also provide a database composed of sequential images and force predictions for interaction force estimation
 https://github.com/hyeon-jo/Interaction-force-estimation-based-on-deep-learning
 ### TF-Record
 In order to optimize the step of loading files in **training** and **evaluation**, we should convert the dataset (sequential video images) into TF-Records.
