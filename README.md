@@ -30,7 +30,7 @@ and directions of external forces.
 
 ## Prepare Data set
 ### Download DB
-To train and evaluate model, We also provide a database composed of sequential images and force predictions for interaction force estimation
+To train and evaluate model, We provide a database composed of sequential images and force predictions for interaction force estimation
 https://github.com/hyeon-jo/Interaction-force-estimation-based-on-deep-learning
 ### TF-Record
 In order to optimize the step of loading files in **training** and **evaluation**, we should convert the dataset (sequential video images) into TF-Records.
@@ -39,7 +39,7 @@ https://www.tensorflow.org/tutorials/load_data/tf_records
 ## Train a Model
 You can find example of training script in train_queue.py.
 <pre><code>CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python train_queue.py</code></pre>
-Some critical arguments (Config.py):
+Some critical arguments (config.py):
 * *BATCH_SIZE*: train batch size.
 * *TRAIN_LEARNING_RATE*: train learning rate.
 * *MODEL_OPTIMIZER*: train optimizer parameter.
